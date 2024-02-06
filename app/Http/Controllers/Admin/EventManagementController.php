@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin\Event;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use ImageHelper;
 
 class EventManagementController extends Controller
 {
@@ -34,8 +35,29 @@ class EventManagementController extends Controller
 
     public function store(Request $request)
     {
+
+        $data = $request->validate([
+            'name'                => 'required|unique:events,name',
+            'district_id'         => 'required',
+            'desc'                => 'required',
+            'location'            => 'required',
+            'date'                => 'required',
+            'image_caption'       => 'required',
+        ]);
+
         try {
-            return $request->all();
+
+            if ($request->hasFile('image')) {
+                $request->validate([
+                    'image' => 'required|file|max:2000|mimes:png,jpg,jpeg,gif,svg'
+                ]);
+
+                $fileName = ImageHelper::image($request->image, '/uploads/event/');
+
+                $data['image'] = $fileName;
+            }
+
+            Event::create($data);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

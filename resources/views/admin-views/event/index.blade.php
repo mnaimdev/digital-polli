@@ -29,16 +29,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($events as $event)
+                                @foreach ($events as $sl => $event)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $sl + 1 }}</td>
+                                        <td>{{ $event->name }}</td>
+                                        <td>{!! $event->desc !!}</td>
+                                        <td>{{ $event->district->name }}</td>
+                                        <td>{{ $event->location }}</td>
+                                        <td>{{ $event->image_caption }}</td>
+                                        <td>
+                                            <img src="{{ asset('/uploads/event') }}/{{ $event->image }}" width="100"
+                                                height="100"alt="">
+                                        </td>
+
+                                        <td>{{ date('d-m-Y', strtotime($event->date)) }}</td>
                                         <td>
                                             <a href="" class="btn btn-primary">Edit</a>
 

@@ -76,6 +76,7 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         '556696b61f299b3a688f109fe566a372' => __DIR__ . '/../..' . '/app/CPU/sms_module.php',
         'ea93699bbcfc0ccfd7f476bdf1f9d636' => __DIR__ . '/../..' . '/app/CPU/filemanager.php',
         '32a69cc4947e62231ac75c7ad2de2072' => __DIR__ . '/../..' . '/app/Library/Constant.php',
+        '11fc3f4d0ee708fa878331ce68d5b617' => __DIR__ . '/../..' . '/app/Helpers/ImageHelper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -546,8 +547,8 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -623,8 +624,8 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         ),
         'League\\Uri\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/uri-interfaces/src',
-            1 => __DIR__ . '/..' . '/league/uri/src',
+            0 => __DIR__ . '/..' . '/league/uri/src',
+            1 => __DIR__ . '/..' . '/league/uri-interfaces/src',
         ),
         'League\\OAuth2\\Server\\' => 
         array (
@@ -829,8 +830,8 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            1 => __DIR__ . '/..' . '/doctrine/common/src',
+            0 => __DIR__ . '/..' . '/doctrine/common/src',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
         'Dflydev\\DotAccessData\\' => 
         array (
@@ -962,6 +963,7 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         'Amirami\\Localizator\\Services\\Parser' => __DIR__ . '/..' . '/amirami/localizator/src/Services/Parser.php',
         'Amirami\\Localizator\\Services\\Writers\\DefaultWriter' => __DIR__ . '/..' . '/amirami/localizator/src/Services/Writers/DefaultWriter.php',
         'Amirami\\Localizator\\Services\\Writers\\JsonWriter' => __DIR__ . '/..' . '/amirami/localizator/src/Services/Writers/JsonWriter.php',
+        'App\\Admin\\Event' => __DIR__ . '/../..' . '/app/Admin/Event.php',
         'App\\Console\\Commands\\DatabaseRefresh' => __DIR__ . '/../..' . '/app/Console/Commands/DatabaseRefresh.php',
         'App\\Console\\Commands\\InstallablePackage' => __DIR__ . '/../..' . '/app/Console/Commands/InstallablePackage.php',
         'App\\Console\\Commands\\SessionFlush' => __DIR__ . '/../..' . '/app/Console/Commands/SessionFlush.php',
@@ -993,6 +995,7 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         'App\\Http\\Controllers\\Admin\\EmergencyContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EmergencyContactController.php',
         'App\\Http\\Controllers\\Admin\\EmployeeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EmployeeController.php',
         'App\\Http\\Controllers\\Admin\\EnvironmentSettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EnvironmentSettingsController.php',
+        'App\\Http\\Controllers\\Admin\\EventManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/EventManagementController.php',
         'App\\Http\\Controllers\\Admin\\FileManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/FileManagerController.php',
         'App\\Http\\Controllers\\Admin\\HelpTopicController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HelpTopicController.php',
         'App\\Http\\Controllers\\Admin\\InhouseProductSaleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InhouseProductSaleController.php',
@@ -2523,6 +2526,11 @@ class ComposerStaticInit27e4f4d23dd73fffd500f4e3c18bcc05
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'Database\\Seeders\\AdminRoleTable' => __DIR__ . '/../..' . '/database/seeders/AdminRoleTable.php',
+        'Database\\Seeders\\AdminTable' => __DIR__ . '/../..' . '/database/seeders/AdminTable.php',
+        'Database\\Seeders\\BusinessSettingSeeder' => __DIR__ . '/../..' . '/database/seeders/BusinessSettingSeeder.php',
+        'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\SellerTableSeeder' => __DIR__ . '/../..' . '/database/seeders/SellerTableSeeder.php',
         'DebugBar\\Bridge\\CacheCacheCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/CacheCacheCollector.php',
         'DebugBar\\Bridge\\DoctrineCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/DoctrineCollector.php',
         'DebugBar\\Bridge\\MonologCollector' => __DIR__ . '/..' . '/maximebf/debugbar/src/DebugBar/Bridge/MonologCollector.php',

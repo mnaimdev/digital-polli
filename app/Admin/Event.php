@@ -2,6 +2,7 @@
 
 namespace App\Admin;
 
+use App\Model\District;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,4 +12,10 @@ class Event extends Model
 
 
     protected $guarded = ['id'];
+
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id', 'id');
+    }
 }

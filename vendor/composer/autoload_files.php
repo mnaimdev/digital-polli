@@ -75,4 +75,5 @@ return array(
     '556696b61f299b3a688f109fe566a372' => $baseDir . '/app/CPU/sms_module.php',
     'ea93699bbcfc0ccfd7f476bdf1f9d636' => $baseDir . '/app/CPU/filemanager.php',
     '32a69cc4947e62231ac75c7ad2de2072' => $baseDir . '/app/Library/Constant.php',
+    '11fc3f4d0ee708fa878331ce68d5b617' => $baseDir . '/app/Helpers/ImageHelper.php',
 );
