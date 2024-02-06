@@ -2304,4 +2304,5 @@
   'Phillipedugs' => 'Phillipedugs',
   'Event' => 'Event',
   'Event Create' => 'Event Create',
+  'Event Show' => 'Event Show',
 );

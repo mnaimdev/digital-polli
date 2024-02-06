@@ -58,6 +58,34 @@ class EventManagementController extends Controller
             }
 
             Event::create($data);
+
+            $notification = array(
+                'alert-type'        => 'success',
+                'message'           => 'Created Successfully',
+            );
+
+            return redirect()->route('admin.event.index')->with($notification);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+
+    public function destroy(Event $event)
+    {
+        try {
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function show(Event $event)
+    {
+        try {
+            return view('admin-views.event.view', [
+                'event' => $event,
+            ]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }

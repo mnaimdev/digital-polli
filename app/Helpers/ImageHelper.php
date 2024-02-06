@@ -11,7 +11,7 @@ class ImageHelper
 
         $image->move(public_path($path), $fileName);
 
-        return  $path . '/' . $fileName;
+        return $fileName;
     }
 
 
