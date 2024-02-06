@@ -2302,4 +2302,5 @@
   'Franciswotly' => 'Franciswotly',
   'admin' => 'Admin',
   'Phillipedugs' => 'Phillipedugs',
+  'Event' => 'Event',
 );
