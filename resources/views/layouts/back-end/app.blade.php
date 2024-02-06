@@ -437,6 +437,15 @@
             return Math.floor(Math.random() * 90000) + 100000;
         }
     </script>
+
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 </body>
 
 </html>

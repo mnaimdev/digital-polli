@@ -3,32 +3,49 @@
 @section('title', \App\CPU\translate('Event'))
 
 @section('content')
-    <div class="container">
+    <div class="container my-5">
+        <a href="{{ route('admin.event.create') }}" class="btn btn-primary my-3">Create New</a>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">
-                            Events List
+                        <h3 class="m-auto">
+                            Event List
                         </h3>
                     </div>
                     <div class="card-body">
                         <table class="display" id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
+                                    <th>SL</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>District</th>
+                                    <th>Location</th>
+                                    <th>Image Caption</th>
+                                    <th>Image</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                </tr>
-                                <tr>
-                                    <td>Row 2 Data 1</td>
-                                    <td>Row 2 Data 2</td>
-                                </tr>
+                                @foreach ($events as $event)
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <a href="" class="btn btn-primary">Edit</a>
+
+                                            <a href="" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -20,4 +20,24 @@ class EventManagementController extends Controller
             return $e->getMessage();
         }
     }
+
+
+    public function create()
+    {
+        try {
+            return view('admin-views.event.create');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+    public function store(Request $request)
+    {
+        try {
+            return $request->all();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

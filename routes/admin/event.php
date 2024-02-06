@@ -10,5 +10,7 @@ Route::group(
 
     function () {
         Route::get('/', [EventManagementController::class, 'index'])->name('index');
+        Route::get('/create', [EventManagementController::class, 'create'])->name('create');
+        Route::post('/store', [EventManagementController::class, 'store'])->name('store');
     }
 );

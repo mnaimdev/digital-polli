@@ -1,124 +1,150 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Category'))
+@section('title', \App\CPU\translate('Event Create'))
 
 @section('content')
-    <div class="content container-fluid">
-        <!-- Page Title -->
-        <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
-            <h2 class="h1 mb-0">
-                <img src="{{asset('/public/assets/back-end/img/brand-setup.png')}}" class="mb-1 mr-1" alt="">
-                @if($category['position'] == 1)
-                    {{\App\CPU\translate('Sub')}}
-                @elseif($category['position'] == 2)
-                    {{\App\CPU\translate('Sub Sub')}}
-                @endif
-                {{\App\CPU\translate('Category')}}
-                {{\App\CPU\translate('Update')}}
-            </h2>
-        </div>
-        <!-- End Page Title -->
-
-        <!-- Content Row -->
+    <div class="container my-3">
+        <a href="{{ route('admin.event.index') }}" class="btn btn-primary my-3">List</a>
         <div class="row">
-            <div class="col-md-12">
+
+            <div class="col-lg-12">
                 <div class="card">
-                    <!-- <div class="card-header">
-                        {{ \App\CPU\translate('category_form')}}
-                    </div> -->
-                    <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                        <form action="{{route('admin.category.update',[$category['id']])}}" method="POST" enctype="multipart/form-data">
+                    <div class="card-header">
+                        <h3 class="m-auto">Create Event</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('admin.event.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
-                            @php($language = $language->value ?? null)
-                            @php($default_lang = 'en')
 
-                            @php($default_lang = json_decode($language)[0])
-                            <ul class="nav nav-tabs w-fit-content mb-4">
-                                @foreach(json_decode($language) as $lang)
-                                    <li class="nav-item text-capitalize">
-                                        <a class="nav-link lang_link {{$lang == $default_lang? 'active':''}}"
-                                           href="#"
-                                           id="{{$lang}}-link">{{\App\CPU\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
                             <div class="row">
-                                <div class="{{ $category['parent_id']==0 ? 'col-lg-6':'col-12' }}">
-                                    @foreach(json_decode($language) as $lang)
-                                    <div>
-                                        <?php
-                                        if (count($category['translations'])) {
-                                            $translate = [];
-                                            foreach ($category['translations'] as $t) {
-                                                if ($t->locale == $lang && $t->key == "name") {
-                                                    $translate[$lang]['name'] = $t->value;
-                                                }
-                                            }
-                                        }
-                                        ?>
-                                        <div class="form-group {{$lang != $default_lang ? 'd-none':''}} lang_form"
-                                            id="{{$lang}}-form">
-                                            <label class="title-color">{{\App\CPU\translate('Category_Name')}}
-                                                ({{strtoupper($lang)}})</label>
-                                            <input type="text" name="name[]"
-                                                value="{{$lang==$default_lang?$category['name']:($translate[$lang]['name']??'')}}"
-                                                class="form-control"
-                                                placeholder="{{\App\CPU\translate('New')}} {{\App\CPU\translate('Category')}}" {{$lang == $default_lang? 'required':''}}>
-                                        </div>
-                                        <input type="hidden" name="lang[]" value="{{$lang}}">
-                                    </div>
-                                    @endforeach
+                                <div class="col-lg-6 my-2">
+                                    <label>Event Name</label>
+                                    <input type="text" name="name"
+                                        class="form-control @error('name')
+                                            is-invalid
+                                        @enderror"
+                                        value="{{ old('name') }}" placeholder="Event Name">
+                                    @error('name')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
+                                </div>
 
-                                    <div class="form-group">
-                                        <label class="title-color" for="priority">{{\App\CPU\translate('priority')}}</label>
-                                        <select class="form-control" name="priority" id="" required>
-                                            @for ($i = 0; $i <= 10; $i++)
-                                            <option
-                                            value="{{$i}}" {{$category['priority']==$i?'selected':''}}>{{$i}}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                <!--image upload only for main category-->
-                                @if($category['parent_id']==0)
-                                    <div class="from_part_2">
-                                        <label class="title-color">{{\App\CPU\translate('Category Logo')}}</label>
-                                        <span class="text-info">({{\App\CPU\translate('ratio')}} 1:1)</span>
-                                        <div class="custom-file text-left">
-                                            <input type="file" name="image" id="customFileEg1"
-                                                   class="custom-file-input"
-                                                   accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                            <label class="custom-file-label"
-                                                   for="customFileEg1">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
-                                        </div>
-                                    </div>
+
+
+                                <div class="col-lg-6 my-2">
+                                    <label>Select District</label>
+                                    <select name="district_id"
+                                        class="form-control js-select2-custom @error('district_id')
+                                        is-invalid
+                                    @enderror">
+
+                                        @php
+                                            $districts = App\Model\District::all();
+                                        @endphp
+
+
+
+                                        <option selected disabled>District</option>
+                                        @foreach ($districts as $district)
+                                            <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('district_id')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
                                 </div>
-                                <div class="col-lg-6 mt-5 mt-lg-0 from_part_2">
-                                    <div class="form-group">
-                                        <center>
-                                            <img class="upload-img-view"
-                                                    id="viewer"
-                                                    src="{{asset('storage/app/public/category')}}/{{$category['icon']}}"
-                                                    alt=""/>
-                                        </center>
-                                    </div>
+
+
+
+                                <div class="col-lg-12 my-2">
+                                    <label>Event Description</label>
+                                    <textarea name="desc"
+                                        class="ckeditor form-control @error('desc')
+                                        is-invalid
+                                    @enderror">{{ old('desc') }}</textarea>
+                                    @error('desc')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
                                 </div>
-                                @endif
-                                @if($category['parent_id']!=0)
-                                        <div class="d-flex justify-content-end gap-3">
-                                            <button type="reset" id="reset" class="btn btn-secondary px-4">{{ \App\CPU\translate('reset')}}</button>
-                                            <button type="submit" class="btn btn--primary px-4">{{ \App\CPU\translate('update')}}</button>
-                                        </div>
+
+
+
+
+                                <div class="col-lg-12 my-2">
+                                    <label>Event Date</label>
+                                    <input type="date" name="date" value="{{ old('date') }}" class="form-control">
+                                    @error('date')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
+                                </div>
+
+
+                                <div class="col-lg-12 my-2">
+                                    <label>Event Location</label>
+                                    <input type="text" name="location" value="{{ old('location') }}"
+                                        class="form-control" placeholder="Event Location">
+                                    @error('location')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
+                                </div>
+
+
+
+                                <div class="col-lg-6 my-2">
+                                    <label>Event Image Caption</label>
+                                    <input type="text" name="image_caption"
+                                        class="form-control @error('image_caption')
+                                        is-invalid
+                                    @enderror">
+
+                                    @error('image_caption')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
+
+                                </div>
+
+
+                                <div class="col-lg-6 my-2">
+                                    <label>Event Image</label>
+                                    <input type="file" name="image"
+                                        class="form-control @error('image')
+                                        is-invalid
+                                    @enderror"
+                                        onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+
+                                    @error('image')
+                                        <strong class="text-danger">
+                                            {{ $message }}
+                                        </strong>
+                                    @enderror
+
+                                    <div class="my-3">
+                                        <img id="blah" width="100" alt="">
                                     </div>
-                                @endif
+
+                                </div>
                             </div>
 
-                            @if($category['parent_id']==0)
-                                <div class="d-flex justify-content-end gap-3">
-                                    <button type="reset" id="reset" class="btn btn-secondary px-4">{{ \App\CPU\translate('reset')}}</button>
-                                    <button type="submit" class="btn btn--primary px-4">{{ \App\CPU\translate('update')}}</button>
-                                </div>
-                            @endif
+
+                            <div class="my-2">
+                                <button class="btn btn-primary" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -126,47 +152,3 @@
         </div>
     </div>
 @endsection
-
-@push('script')
-
-    <script>
-        $(".lang_link").click(function (e) {
-            e.preventDefault();
-            $(".lang_link").removeClass('active');
-            $(".lang_form").addClass('d-none');
-            $(this).addClass('active');
-
-            let form_id = this.id;
-            let lang = form_id.split("-")[0];
-            console.log(lang);
-            $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '{{$default_lang}}') {
-                $(".from_part_2").removeClass('d-none');
-            } else {
-                $(".from_part_2").addClass('d-none');
-            }
-        });
-
-        $(document).ready(function () {
-            $('#dataTable').DataTable();
-        });
-    </script>
-
-    <script>
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#viewer').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        $("#customFileEg1").change(function () {
-            readURL(this);
-        });
-    </script>
-@endpush

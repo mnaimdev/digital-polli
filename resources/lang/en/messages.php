@@ -2303,4 +2303,5 @@
   'admin' => 'Admin',
   'Phillipedugs' => 'Phillipedugs',
   'Event' => 'Event',
+  'Event Create' => 'Event Create',
 );
