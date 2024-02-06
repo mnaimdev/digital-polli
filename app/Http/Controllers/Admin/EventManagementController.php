@@ -75,6 +75,13 @@ class EventManagementController extends Controller
     public function destroy(Event $event)
     {
         try {
+            ImageHelper::removeImage($event->image, '/uploads/event/');
+
+            $event->delete();
+
+            toastr()->success('Deleted Successfully');
+
+            return back();
         } catch (\Exception $e) {
             return $e->getMessage();
         }

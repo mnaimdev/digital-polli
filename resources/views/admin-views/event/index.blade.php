@@ -40,7 +40,8 @@
                                             <a href="{{ route('admin.event.show', $event->id) }}"
                                                 class="btn-sm mx-1 btn btn-info py-2">View</a>
 
-                                            <a href="" class="btn-sm mx-1 btn btn-danger py-2">Delete</a>
+                                            <a href="{{ route('admin.event.destroy', $event->id) }}"
+                                                class="btn-sm mx-1 btn btn-danger py-2">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

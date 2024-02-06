@@ -15,6 +15,13 @@ class ImageHelper
     }
 
 
+    public static function removeImage($image, $path)
+    {
+        $deletedFrom = public_path($path . $image);
+        unlink($deletedFrom);
+    }
+
+
 
     public function truncate($text, $limit = 60)
     {
